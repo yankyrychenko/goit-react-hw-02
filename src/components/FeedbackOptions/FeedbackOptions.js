@@ -2,36 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './FeedbackOptions.module.css';
 
-const FeedbackOptions = ({ onLeaveFeedback }) => (
+const FeedbackOptions = ({ options, onLeaveFeedback }) => (
   <>
-    <button
-      type="button"
-      className={style.btn}
-      data-feedback="good"
-      onClick={onLeaveFeedback}
-    >
-      Good
-    </button>
-    <button
-      type="button"
-      className={style.btn}
-      data-feedback="neutral"
-      onClick={onLeaveFeedback}
-    >
-      Neutral
-    </button>
-    <button
-      type="button"
-      className={style.btn}
-      data-feedback="bad"
-      onClick={onLeaveFeedback}
-    >
-      Bad
-    </button>
+    {[...Object.keys(options)].map(option => (
+      <button
+        key={option}
+        data-feedback={option}
+        type="button"
+        className={style.btn}
+        onClick={onLeaveFeedback}
+      >
+        {option}
+      </button>
+    ))}
   </>
 );
 
 FeedbackOptions.propTypes = {
+  options: PropTypes.objectOf(PropTypes.number.isRequired),
   onLeaveFeedback: PropTypes.func.isRequired,
 };
 
