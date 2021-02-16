@@ -12,28 +12,9 @@ class App extends Component {
   };
 
   feedbackCalc = ({ target }) => {
-    switch (target.dataset.feedback) {
-      case 'good':
-        this.setState(prevState => ({
-          good: prevState.good + 1,
-        }));
-        return;
-
-      case 'neutral':
-        this.setState(prevState => ({
-          neutral: prevState.neutral + 1,
-        }));
-        return;
-
-      case 'bad':
-        this.setState(prevState => ({
-          bad: prevState.bad + 1,
-        }));
-        return;
-
-      default:
-        break;
-    }
+    this.setState(prevState => ({
+      [target.dataset.feedback]: prevState[target.dataset.feedback] + 1,
+    }));
   };
 
   countTotalFeedback() {
